@@ -1,2 +1,6 @@
-# test-task-alfa
-Test task for Alfa Ecosystems
+# Тестовое задание для Alfa Ecosystem
+
+## Команды для запуска
+
+- `npm run dev` - запуск проекта в режиме разработки
+- `npm run build` - сборка проекта
