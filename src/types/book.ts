@@ -1,4 +1,5 @@
 export interface Book {
+  bookId: string;
   key: string;
   author_name: string[];
   cover_edition_key: string;
