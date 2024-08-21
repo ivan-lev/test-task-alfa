@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Redux
-import { likeBook, setBookToDisplay, deleteBook } from '../../slices/booksSlice';
+import { likeBook, deleteBook, setBookToDisplay } from '../../slices/booksSlice';
 import { useDispatch } from 'react-redux';
 
 // Types
@@ -19,11 +19,9 @@ export default function Card({ book }: { book: Book }): JSX.Element {
 
   return (
     <div className="card">
-      <Link to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
-        <img className="card__image" src={cover} alt={`Обложка к ${title}`}></img>
-      </Link>
       <Link className="card__link" to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
-        {title}
+        <img className="card__image" src={cover} alt={`Обложка к ${title}`}></img>
+        <span className="card__title">{title}</span>
       </Link>
       <div
         className={`card__like card__like_${isLiked ? (!isHovered ? 'liked' : 'broken') : 'empty'}`}
