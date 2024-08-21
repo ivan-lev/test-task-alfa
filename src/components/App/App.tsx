@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import FilterBox from '../FilterBox/FilterBox.tsx';
 import CardsList from '../CardsList/CardsList.tsx';
 import BookPage from '../BookPage/BookPage';
 
@@ -39,9 +40,10 @@ export default function App() {
             : './no-cover.jpg';
 
           book.isLiked = false;
+          book.isShown = true;
         });
 
-        dispatch(setBooksList(result.docs));
+        dispatch(setBooksList(books));
       })
       .catch(error => console.log(error));
   }, []);
@@ -51,7 +53,15 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />}>
-          <Route index element={<CardsList />} />
+          <Route
+            index
+            element={
+              <>
+                <FilterBox />
+                <CardsList />
+              </>
+            }
+          />
           <Route path=":cardId" element={<BookPage />} />
         </Route>
       </Routes>
