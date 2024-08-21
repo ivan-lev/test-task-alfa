@@ -1,27 +1,33 @@
 import './Card.scss';
 
-import type { Book } from '../../types/book';
+// React
+import { Link } from 'react-router-dom';
 
-import { likeBook } from '../../slices/booksSlice';
+// Redux
+import { likeBook, setBookToDisplay } from '../../slices/booksSlice';
 import { useDispatch } from 'react-redux';
+
+// Types
+import type { Book } from '../../types/book';
 
 export default function Card({ book }: { book: Book }): JSX.Element {
   const dispatch = useDispatch();
 
-  const { key, cover, title, isLiked } = book;
-  const bookLink = key.split('/').pop();
+  const { bookId, cover, title, isLiked } = book;
 
   return (
     <div className="card">
-      <a href={bookLink}>
+      <Link to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
         <img className="card__image" src={cover} alt={`Обложка к ${title}`}></img>
-      </a>
-      <a href={bookLink}>{title}</a>
+      </Link>
+      <Link to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
+        {title}
+      </Link>
       <img
         src={`./icons/heart-${isLiked ? 'filled' : 'empty'}.svg`}
         alt=""
         className="card__like"
-        onClick={() => dispatch(likeBook(key))}
+        onClick={() => dispatch(likeBook(bookId))}
       />
     </div>
   );
