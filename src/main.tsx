@@ -16,7 +16,7 @@ import store from './slices/index.ts';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.DEV ? '/' : '/test-task-alfa/'}>
         <App />
       </BrowserRouter>
     </Provider>
