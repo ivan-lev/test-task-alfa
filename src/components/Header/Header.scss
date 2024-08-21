@@ -1,6 +1,8 @@
 .header {
   flex: 0 0 auto;
-  display: flex;
+  display: grid;
   width: 100%;
-  justify-content: center;
+  place-content: center;
+  height: 80px;
+  font-size: 20px;
 }
