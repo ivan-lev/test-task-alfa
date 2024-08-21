@@ -14,10 +14,11 @@ import { Book } from '../../types/book';
 export default function BookPage() {
   const dispatch = useDispatch();
   const book: Book = useSelector((state: RootState) => state.books.bookToDisplay);
+
   return (
     <section className="book-page">
       <Link
-        className="book-page__navigation"
+        className="book-page__back-button"
         to=".."
         onClick={() => dispatch(resetBookToDisplay())}
       >

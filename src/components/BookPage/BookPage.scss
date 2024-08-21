@@ -1,14 +1,17 @@
+@use '../../variables/globalStyles.scss';
+
 .book-page {
   display: grid;
-  grid-template-rows: 10px 1fr;
+  grid-template-rows: 50px 1fr;
   grid-template-columns: 300px 500px;
   grid-template-areas:
     'navigation navgation'
     'image content';
   gap: 20px;
 
-  &__navigation {
+  &__back-button {
     grid-area: navigation;
+    @include globalStyles.button;
   }
 
   &__img {
