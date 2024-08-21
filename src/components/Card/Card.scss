@@ -1,3 +1,5 @@
+@use '../../variables/colors.scss';
+
 .card {
   display: grid;
   grid-template-columns: 1fr;
@@ -5,7 +7,7 @@
   gap: 15px;
   justify-items: center;
   position: relative;
-  border: 1px solid lightgray;
+  border: 1px solid colors.$border-color;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 10px;
@@ -16,12 +18,27 @@
     object-fit: contain;
   }
 
+  &__link {
+    color: colors.$font-color;
+  }
+
   &__like {
     height: 40px;
-    width: auto;
+    width: 40px;
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
+    background-size: 100%;
+
+    &_liked {
+      background-image: url('../../../public/icons/heart-filled.svg');
+    }
+    &_empty {
+      background-image: url('../../../public/icons/heart-empty.svg');
+    }
+    &_broken {
+      background-image: url('../../../public/icons/heart-broken.svg');
+    }
   }
 }

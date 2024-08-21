@@ -1,6 +1,7 @@
 import './Card.scss';
 
 // React
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Redux
@@ -11,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import type { Book } from '../../types/book';
 
 export default function Card({ book }: { book: Book }): JSX.Element {
+  const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
 
   const { bookId, cover, title, isLiked } = book;
@@ -20,14 +22,14 @@ export default function Card({ book }: { book: Book }): JSX.Element {
       <Link to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
         <img className="card__image" src={cover} alt={`Обложка к ${title}`}></img>
       </Link>
-      <Link to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
+      <Link className="card__link" to={bookId} onClick={() => dispatch(setBookToDisplay(bookId))}>
         {title}
       </Link>
-      <img
-        src={`./icons/heart-${isLiked ? 'filled' : 'empty'}.svg`}
-        alt=""
-        className="card__like"
+      <div
+        className={`card__like card__like_${isLiked ? (!isHovered ? 'liked' : 'broken') : 'empty'}`}
         onClick={() => dispatch(likeBook(bookId))}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       />
     </div>
   );
