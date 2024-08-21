@@ -1,0 +1,29 @@
+.book-page {
+  display: grid;
+  grid-template-rows: 10px 1fr;
+  grid-template-columns: 300px 500px;
+  grid-template-areas:
+    'navigation navgation'
+    'image content';
+  gap: 20px;
+
+  &__navigation {
+    grid-area: navigation;
+  }
+
+  &__img {
+    grid-area: image;
+    width: 300px;
+    max-height: 500px;
+    object-fit: contain;
+    height: auto;
+  }
+
+  &__content {
+    grid-area: content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
