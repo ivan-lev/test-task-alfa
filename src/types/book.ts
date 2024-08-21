@@ -10,4 +10,5 @@ export interface Book {
   title: string;
   cover?: string;
   isLiked: boolean;
+  isShown: boolean;
 }
