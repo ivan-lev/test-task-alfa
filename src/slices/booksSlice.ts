@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Book } from '../types/book';
 
 interface Books {
-  bookToDisplay: Book;
   booksList: Book[];
+  bookToDisplay: Book;
 }
 
 const emptyBook = {
@@ -17,12 +17,13 @@ const emptyBook = {
   isbn: [''],
   first_publish_year: 0,
   title: '',
-  isLiked: false
+  isLiked: false,
+  isShown: false
 };
 
 const initialState: Books = {
-  bookToDisplay: emptyBook,
-  booksList: []
+  booksList: [],
+  bookToDisplay: emptyBook
 };
 
 const booksSlice = createSlice({
@@ -31,6 +32,22 @@ const booksSlice = createSlice({
   reducers: {
     setBooksList: (state, action) => {
       state.booksList = action.payload;
+    },
+
+    showLikedBooks: state => {
+      state.booksList.forEach(book => {
+        if (!book.isLiked) {
+          book.isShown = false;
+        }
+      });
+    },
+
+    showAllBooks: state => {
+      state.booksList.forEach(book => {
+        if (!book.isLiked) {
+          book.isShown = true;
+        }
+      });
     },
 
     likeBook: (state, action) => {
@@ -57,7 +74,14 @@ const booksSlice = createSlice({
   }
 });
 
-export const { setBooksList, likeBook, deleteBook, setBookToDisplay, resetBookToDisplay } =
-  booksSlice.actions;
+export const {
+  setBooksList,
+  showLikedBooks,
+  showAllBooks,
+  likeBook,
+  deleteBook,
+  setBookToDisplay,
+  resetBookToDisplay
+} = booksSlice.actions;
 
 export default booksSlice.reducer;
