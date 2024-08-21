@@ -1,11 +1,11 @@
 import './Main.scss';
 
-import CardsList from '../CardsList/CardsList';
+import { Outlet } from 'react-router-dom';
 
 export default function Main() {
   return (
     <main className="main">
-      <CardsList />
+      <Outlet />
     </main>
   );
 }
