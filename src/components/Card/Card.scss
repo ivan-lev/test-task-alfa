@@ -32,13 +32,29 @@
     background-size: 100%;
 
     &_liked {
-      background-image: url('../../../public/icons/heart-filled.svg');
+      background-image: url('/icons/heart-filled.svg');
     }
     &_empty {
-      background-image: url('../../../public/icons/heart-empty.svg');
+      background-image: url('/icons/heart-empty.svg');
     }
     &_broken {
-      background-image: url('../../../public/icons/heart-broken.svg');
+      background-image: url('/icons/heart-broken.svg');
     }
+  }
+
+  &__delete {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    background-size: 100%;
+    background-image: url('/icons/trash-bin.svg');
+  }
+
+  &__like:hover,
+  &__delete:hover {
+    opacity: 0.8;
   }
 }

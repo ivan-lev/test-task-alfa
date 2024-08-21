@@ -42,10 +42,15 @@ const booksSlice = createSlice({
     setBookToDisplay: (state, action) => {
       const book = state.booksList.find(book => book.bookId === action.payload);
       state.bookToDisplay = book || emptyBook;
+    },
+
+    deleteBook: (state, action) => {
+      const filteredList = state.booksList.filter(book => book.bookId !== action.payload);
+      state.booksList = filteredList;
     }
   }
 });
 
-export const { setBooksList, likeBook, setBookToDisplay } = booksSlice.actions;
+export const { setBooksList, likeBook, setBookToDisplay, deleteBook } = booksSlice.actions;
 
 export default booksSlice.reducer;

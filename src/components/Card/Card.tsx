@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Redux
-import { likeBook, setBookToDisplay } from '../../slices/booksSlice';
+import { likeBook, setBookToDisplay, deleteBook } from '../../slices/booksSlice';
 import { useDispatch } from 'react-redux';
 
 // Types
@@ -31,6 +31,7 @@ export default function Card({ book }: { book: Book }): JSX.Element {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       />
+      <div className="card__delete" onClick={() => dispatch(deleteBook(bookId))}></div>
     </div>
   );
 }
