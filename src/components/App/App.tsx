@@ -1,7 +1,8 @@
 import './App.scss';
 
-// React hooks
+// React
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 // Redux
 import { setBooksList } from '../../slices/booksSlice.ts';
@@ -11,9 +12,12 @@ import { useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import CardsList from '../CardsList/CardsList.tsx';
+import BookPage from '../BookPage/BookPage';
 
 // Utils
 import { api } from '../../utils/api.ts';
+import { getBookId } from '../../utils/getBookId.ts';
 
 // Types
 import type { Book } from '../../types/book.ts';
@@ -28,10 +32,10 @@ export default function App() {
         const books = result.docs;
 
         books.forEach((book: Book) => {
-          const bookCover = book.cover_edition_key;
+          book.bookId = getBookId(book.key);
 
           book.cover = book.cover_edition_key
-            ? `https://covers.openlibrary.org/b/olid/${bookCover}-L.jpg`
+            ? `https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-L.jpg`
             : './no-cover.jpg';
 
           book.isLiked = false;
@@ -45,7 +49,13 @@ export default function App() {
   return (
     <>
       <Header />
-      <Main />
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route index element={<CardsList />} />
+          <Route path=":cardId" element={<BookPage />} />
+        </Route>
+      </Routes>
+
       <Footer />
     </>
   );
