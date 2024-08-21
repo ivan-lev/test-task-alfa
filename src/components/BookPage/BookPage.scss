@@ -3,11 +3,23 @@
 .book-page {
   display: grid;
   grid-template-rows: 50px 1fr;
-  grid-template-columns: 300px 500px;
+  grid-template-columns: 300px 1fr;
   grid-template-areas:
     'navigation navgation'
     'image content';
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 200px 1fr;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'navigation'
+      'image'
+      'content';
+  }
 
   &__back-button {
     grid-area: navigation;
@@ -16,7 +28,7 @@
 
   &__img {
     grid-area: image;
-    width: 300px;
+    width: 100%;
     max-height: 500px;
     object-fit: contain;
     height: auto;
