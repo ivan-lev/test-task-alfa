@@ -31,7 +31,13 @@
   }
 
   &__title {
+    width: 100%;
+    text-align: center;
     color: colors.$font-color;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 1;
   }
 
   &__like {
