@@ -14,9 +14,11 @@ export default function CardsList(): JSX.Element {
   const booksList = useSelector((state: RootState) => state.books.booksList);
   return (
     <div className="cards-list">
-      {booksList.map((book: Book) => (
-        <Card key={book.key} book={book} />
-      ))}
+      {booksList
+        .filter(book => book.isShown)
+        .map((book: Book) => (
+          <Card key={book.key} book={book} />
+        ))}
     </div>
   );
 }
