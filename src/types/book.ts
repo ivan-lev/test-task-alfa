@@ -8,4 +8,5 @@ export interface Book {
   first_publish_year: number;
   title: string;
   cover?: string;
+  isLiked: boolean;
 }
