@@ -1,8 +1,28 @@
 .header {
   flex: 0 0 auto;
-  display: grid;
+  padding-top: 10px;
+  display: flex;
   width: 100%;
-  place-content: center;
+  align-items: center;
+  justify-content: space-between;
   height: 80px;
   font-size: 20px;
+
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-left: auto;
+
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+      margin-left: 0;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 12px;
+    }
+  }
 }
