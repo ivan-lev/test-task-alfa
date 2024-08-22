@@ -1,5 +1,6 @@
 {
-  "name": "test-task-alfa-ecosystem",
+  "name": "test-task-alfa",
+  "homepage": "https://ivan-lev.github.io/test-task-alfa",
   "private": true,
   "version": "0.0.0",
   "type": "module",
