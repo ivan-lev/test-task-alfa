@@ -1,7 +1,7 @@
 import './App.scss';
 
 // React
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Redux
@@ -15,6 +15,7 @@ import Footer from '../Footer/Footer';
 import FilterBox from '../FilterBox/FilterBox.tsx';
 import CardsList from '../CardsList/CardsList.tsx';
 import BookPage from '../BookPage/BookPage';
+import Preloader from '../Preloader/Preloader.tsx';
 
 // Utils
 import { api } from '../../utils/api.ts';
@@ -25,6 +26,7 @@ import type { Book } from '../../types/book.ts';
 
 export default function App() {
   const dispatch = useDispatch();
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     api
@@ -44,6 +46,7 @@ export default function App() {
         });
 
         dispatch(setBooksList(books));
+        setIsDataLoaded(true);
       })
       .catch(error => console.log(error));
   }, []);
@@ -56,10 +59,14 @@ export default function App() {
           <Route
             index
             element={
-              <>
-                <FilterBox />
-                <CardsList />
-              </>
+              !isDataLoaded ? (
+                <Preloader />
+              ) : (
+                <>
+                  <FilterBox />
+                  <CardsList />
+                </>
+              )
             }
           />
           <Route path=":cardId" element={<BookPage />} />
