@@ -3,8 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 // export default defineConfig({
-//   plugins: [react()],
-//   base: '/test-task-alfa/'
+//   plugins: [react()]
 // });
 
 export default defineConfig(({ command }) => {
